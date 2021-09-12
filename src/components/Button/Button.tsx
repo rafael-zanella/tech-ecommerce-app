@@ -1,11 +1,11 @@
 import React from 'react';
-import './button.css';
+import { DefaultButton } from './Button.styled';
 
 interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
-  primary?: boolean;
+  mode?: 'primary' | 'secondary';
   /**
    * What background color to use
    */
@@ -28,21 +28,19 @@ interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button = ({
-  primary = false,
+  mode = 'primary',
   size = 'medium',
   backgroundColor,
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
+    <DefaultButton
+      mode={mode}
+      size='large'
+      backgroundColor={backgroundColor}
     >
       {label}
-    </button>
+    </DefaultButton>
   );
 };
